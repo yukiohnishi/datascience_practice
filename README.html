@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title>Data Science部git勉強会</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Data Science部git勉強会</h1>
+</div>
+<h1 id="goal">Goal</h1>
+<p>gitの仕組みを理解する。 gitとgithubの関係を理解する。 開発時に必要な最低限のgitコマンドを習得する。</p>
+<h1 id="description">Description</h1>
+<p><a href="https://www.atlassian.com/ja/git/tutorial/git-basics">初学者オススメのページです</a></p>
+<h2 id="using-github">Using <code>github</code></h2>
+<p>githubにローカルアクセスするために、ssh鍵の公開鍵をgithubに登録しておきます。</p>
+<pre><code>ls ~/.ssh　(id_rsa.pubがあるかどうか確認してください。)
+(ない場合)　ssh-keygen -t rsa -C “メールアドレス&quot;
+pbcopy &lt; ~/.ssh/id_rsa.pub</code></pre>
+<p>これで、公開鍵が作成、クリップボードにコピーされたので、githubに登録します。(一緒にやります。)</p>
+<h2 id="git-clone">git clone</h2>
+<p>すでに練習用のリポジトリを作成してあります。 練習用のディレクトリを作成し、その下で以下のコマンドを実行。</p>
+<pre><code>git clone https://github.com/yukiohnishi/datascience_practice.git</code></pre>
+<h2 id="git-config">git config</h2>
+<p>gitを使う上での共通設定を行います。(ユーザ名、メールアドレス)</p>
+<pre><code>git config --global user.name &quot;名前&quot;
+git config --global user.email &quot;メールアドレス&quot;</code></pre>
+<p>--globalをつけることで、このPCで扱うgitに関しては、すべてこの設定が反映されます。 業務ではあんまりないと思いますが、gitごとに異なる設定を行うことも可能ですので、興味があれば調べてください。</p>
+<h2 id="git-branch">git branch</h2>
+<p>gitでは作業をbranchという作業単位で行うことが主流です。 以下コマンドでローカルに作成されているブランチを確認することができます。</p>
+<h2 id="git-checkout">git checkout</h2>
+<p>git checkoutは色々なケースで使うことができるコマンドです。 今回はブランチの切り替え、ブランチの新規作成を行うコマンドについて紹介します。</p>
+<pre><code>git checkout &#39;既存のブランチ名&#39;
+git checkout -b &#39;新規ブランチ名&#39;</code></pre>
+<p>何か作業を行う際は、masterブランチから新しいブランチを切って、作業を行ってください。</p>
+<h2 id="git-status">git status</h2>
+<p>gitのコミット状況や、編集されたファイルの一覧などを表示します。</p>
+<h2 id="git-add-commit">git add, commit</h2>
+<p>とりあえずワンセットで覚えてください。 commitした変更はgitの履歴として残ります。</p>
+<pre><code>git add .
+git commit -m &#39;コメント(変更内容が簡潔に記されていること)&#39;</code></pre>
+<h2 id="git-commit---amend">git commit --amend</h2>
+<p>間違えてcommitしてしまった変更を修正するコマンドです。コミットコメントの編集なんかによく使われます。</p>
+<h2 id="git-reset">git reset</h2>
+<p>直前のコミットを取り消します。 どこのコミットを打ち消すかも指定可能です。以下のrevertも。</p>
+<h2 id="git-revert">git revert</h2>
+<p>直前のコミットに上書きで一つ前のコミットを乗せます。</p>
+<h2 id="git-push">git push</h2>
+<p>ローカルのコミット履歴をリモートブランチに反映させます。 git add, commit, pushが一連の流れになります。</p>
+<h2 id="git-fetch">git fetch</h2>
+<p>ローカルブランチが遅れている分、リモートブランチからコミット履歴をローカルにダウンロードします。 ローカルのファイルには変更は反映されません。</p>
+<h2 id="git-pull">git pull</h2>
+<p>リモートブランチからコミット履歴をローカルにダウンロードし、ローカルのファイルに変更を反映させます。 新たにブランチを切る時は必ず、リモートから最新のものをpullしてきてからブランチを切り、作業を開始してください。</p>
+<h2 id="git-merge">git merge</h2>
+<p>ブランチAで行われた変更をブランチBに反映させます。</p>
+<pre><code>git merge &#39;branchA&#39; &#39;branchB&#39;</code></pre>
+</body>
+</html>
